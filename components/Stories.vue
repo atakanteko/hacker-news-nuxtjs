@@ -8,12 +8,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Stories',
   computed: {
     ...mapGetters('pool', ['getIsLoading']),
   },
+  mounted() {
+    this.setHits();
+  },
+  methods: {
+    ...mapActions({
+      setHits: 'pool/setHits',
+    }),
+  },
+
 };
 </script>
