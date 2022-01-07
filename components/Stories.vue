@@ -21,6 +21,7 @@
           </a>
           <button
             class="remove-btn"
+            @click="handleRemove(item.id)"
           >
             remove
           </button>
@@ -61,6 +62,7 @@ export default {
   methods: {
     ...mapActions({
       setHits: 'pool/setHits',
+      handleRemove: 'pool/handleRemove',
     }),
   },
 

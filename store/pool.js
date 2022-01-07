@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { SET_LOADING, SET_PAGE, SET_STORIES } from './types';
+import {
+  SET_LOADING, SET_PAGE, SET_STORIES, REMOVE_STORY,
+} from './types';
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?';
 
@@ -38,6 +40,10 @@ export const actions = {
   setPage: (context, page) => {
     context.commit(SET_PAGE, page);
   },
+  handleRemove: (context, id) => {
+    const filteredStories = context.getters.getHits.filter(item => item.objectID !== id);
+    context.commit(REMOVE_STORY, filteredStories);
+  },
 };
 
 export const mutations = {
@@ -49,5 +55,8 @@ export const mutations = {
   },
   [SET_PAGE](state, page) {
     state.page = page;
+  },
+  [REMOVE_STORY](state, filteredStories) {
+    state.hits = filteredStories;
   },
 };
