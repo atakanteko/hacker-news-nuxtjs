@@ -26,7 +26,6 @@ export const actions = {
   setHits: async context => {
     await context.dispatch('setIsLoading', true);
     try {
-      `${API_ENDPOINT}query=${state.query}&page=${state.page}`;
       const response = await axios.get(`${API_ENDPOINT}query=${context.getters.getQuery}&page=${context.getters.getPage}`);
       const { hits, nbPages: numberOfPages } = response.data;
       context.commit(SET_STORIES, hits);
